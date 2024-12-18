@@ -82,8 +82,6 @@ docker exec -it user_management_api npm run test:cov
 ```
 
 ---
-
----
 ## **Caso não queria usar docker**
  Uma vez clonado o projeto, conforme passo 1.
  ### **2. Instalar Dependências**
