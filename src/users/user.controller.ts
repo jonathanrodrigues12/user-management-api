@@ -13,12 +13,18 @@ import {
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './users.entity';
-import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('users')
 @ApiTags('users')
+@ApiBearerAuth()
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -66,6 +72,7 @@ export class UserController {
   @ApiOkResponse({
     description: 'Restore a user deleted.',
   })
+  @UseGuards(JwtAuthGuard)
   @Patch('restore/:id')
   async restoreUser(@Param('id') id: string): Promise<User> {
     return this.userService.restoreUser(id);
