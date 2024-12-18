@@ -1,0 +1,15 @@
+export enum RequestMessages {
+  OPERATION_SUCCESSFUL = 'Operation successful',
+  OPERATION_FAILED = 'Operation failed',
+  RESOURCE_CREATED = 'Resource successfully created',
+  RESOURCE_UPDATED = 'Resource successfully updated',
+  RESOURCE_DELETED = 'Resource successfully deleted',
+  RESOURCE_NOT_FOUND = 'Resource not found',
+  INVALID_INPUT = 'Invalid input',
+  UNAUTHORIZED = 'Unauthorized',
+  FORBIDDEN = 'Forbidden',
+  INTERNAL_SERVER_ERROR = 'Internal server error',
+  EVENT_CREATED_SUCCESSFULLY = 'Created successfully',
+  EVENT_UPDATED_SUCCESSFULLY = 'Update successfully',
+  EVENT_DELETED_SUCCESSFULLY = 'Deleted successfully',
+}

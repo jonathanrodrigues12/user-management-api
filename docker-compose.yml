@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: user_management_db
+    environment:
+      POSTGRES_USER: user_management
+      POSTGRES_PASSWORD: sz1vaade
+      POSTGRES_DB: user_management
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  api:
+    build: .
+    container_name: user_management_api
+    environment:
+      NODE_ENV: production
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USERNAME: user_management
+      DB_PASSWORD: sz1vaade
+      DB_DATABASE: user_management
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    
+    command: >
+      sh -c "npx typeorm migration:run -d dist/data-source.js && node dist/main"
+
+
+
+volumes:
+  pgdata:
