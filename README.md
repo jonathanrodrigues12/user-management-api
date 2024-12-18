@@ -1,6 +1,6 @@
 # Sistema de Gerenciamento de Usuários com Autenticação JWT
 
-Este projeto é uma API desenvolvida com **NestJS** para gerenciar usuários, incluindo funcionalidades de autenticação utilizando **JWT (JSON Web Tokens)**. O sistema implementa os princípios do **SOLID** e segue boas práticas de desenvolvimento.
+Este projeto é uma API desenvolvida com **NestJS** para gerenciar usuários, incluindo funcionalidades de autenticação utilizando **JWT (JSON Web Tokens)**. 
 
 ---
 
@@ -41,39 +41,92 @@ Este projeto é uma API desenvolvida com **NestJS** para gerenciar usuários, in
 
 ## **Instalação**
 
-### **1. Clonar o Repositório**
+### **Clonar o Repositório**
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone git@github.com:jonathanrodrigues12/user-management-api.git
 cd user-management-api
 ```
 
-### **2. Configurar o Arquivo `.env`**
+### **Configurar o Arquivo `.env`**
 Atualize o arquivo `.env` com as informações do banco e JWT:
 
 ```
-DB_HOST=db
-DB_PORT=5432
-DB_USER=seu_usuario
+POSTGRES_HOST=db
+POSTGRES_PORT=5432
+POSTGRES_USER=seu_usuario
 DB_PASSWORD=sua_senha
-DB_NAME=seu_banco
+POSTGRES_DB=seu_banco
 JWT_SECRET=seu_segredo_jwt
 JWT_EXPIRES_IN=3600s
 ```
 
-### **3. Subir os Contêineres com Docker**
+### **Subir os Contêineres com Docker**
 Certifique-se de ter o **Docker** instalado e execute o seguinte comando para subir a API e o banco de dados:
 
 ```bash
 docker-compose up --build
 ```
-
 Isso criará os contêineres para a API e o banco de dados PostgreSQL.
 
-### **4. Acessar o Servidor**
-A API estará acessível em: `http://localhost:3000`
+
+## **Testes**
+
+### **Rodar Testes Unitários**
+```bash
+docker exec -it user_management_api npm run test
+```
+
+### **Gerar Relatório de Cobertura**
+```bash
+docker exec -it user_management_api npm run test:cov
+```
 
 ---
 
+---
+## **Caso não queria usar docker **
+ Uma vez clonado o projeto, conforme passo 1.
+ ### **2. Instalar Dependências**
+```bash
+npm install
+```
+### **Configurar o Banco de Dados**
+Certifique-se de que o PostgreSQL esteja rodando e crie um banco de dados. Atualize o arquivo `.env` com as informações do banco:
+```
+POSTGRES_HOST=db
+POSTGRES_PORT=5432
+POSTGRES_USER=seu_usuario
+DB_PASSWORD=sua_senha
+POSTGRES_DB=seu_banco
+JWT_SECRET=seu_segredo_jwt
+JWT_EXPIRES_IN=3600s
+```
+
+### **Rodar Migrações**
+```bash
+npm run migration:run
+```
+
+### **Iniciar o Servidor**
+```bash
+npm run start:dev
+```
+
+---
+
+## **Testes**
+
+### **Rodar Testes Unitários**
+```bash
+npm run test
+```
+
+---
+ ### **Acessar o Servidor**
+A API estará acessível em: `http://localhost:3000`
+A documentação da API estará acessível em: `http://localhost:3000/api/docs`
+
+---
 ## **Endpoints Disponíveis**
 
 ### **1. Gerenciamento de Usuários**
@@ -150,28 +203,5 @@ Resposta:
   "email": "john.doe@example.com"
 }
 ```
-
 ---
-
-## **Testes**
-
-### **Rodar Testes Unitários**
-```bash
-docker exec -it user_management_api npm run test
-```
-
-### **Gerar Relatório de Cobertura**
-```bash
-docker exec -it user_management_api npm run test:cov
-```
-
----
-
-## **Contribuição**
-
-1. Fork este repositório
-2. Crie uma branch para sua feature (`git checkout -b minha-feature`)
-3. Commit suas alterações (`git commit -m 'Minha nova feature'`)
-4. Envie sua branch (`git push origin minha-feature`)
-5. Abra um Pull Request
 
