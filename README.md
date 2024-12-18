@@ -51,6 +51,7 @@ cd user-management-api
 Atualize o arquivo `.env` com as informações do banco e JWT:
 
 ```
+NODE_ENV=development
 POSTGRES_HOST=db
 POSTGRES_PORT=5432
 POSTGRES_USER=seu_usuario
@@ -91,6 +92,7 @@ npm install
 ### **Configurar o Banco de Dados**
 Certifique-se de que o PostgreSQL esteja rodando e crie um banco de dados. Atualize o arquivo `.env` com as informações do banco:
 ```
+NODE_ENV=development
 POSTGRES_HOST=db
 POSTGRES_PORT=5432
 POSTGRES_USER=seu_usuario
