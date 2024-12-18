@@ -7,7 +7,7 @@ import {
   HttpException,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOkResponse, ApiOperation } from '@nestjs/swagger';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { LoginAuthDto } from './dto/login-auth.dto';
 
@@ -30,7 +30,14 @@ export class AuthController {
     return this.authService.login(user);
   }
 
+  @ApiOperation({
+    summary: 'Validate Token',
+  })
+  @ApiOkResponse({
+    description: 'Validade token',
+  })
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @Post('validate')
   validate(@Request() req) {
     return req.user;
